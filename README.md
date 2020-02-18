@@ -6,7 +6,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version : 2.5.0
-
+*
 * Database : postgres
 
 * Database initialization : rake db:setup(set database user name and password in database.yml)
@@ -15,3 +15,4 @@ Things you may want to cover:
 
 * Deployment instructions: rails s
 
+* login credentials: user@example.com, password: 123456
