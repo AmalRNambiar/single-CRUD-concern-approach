@@ -1,0 +1,67 @@
+<section class="content">
+  <div class="row">
+    <section class="content">  
+      <% @questions.each do |question|%>
+        <div class="box box-success">
+          <div class="box-header">
+            <h3 class="box-title"><b>Q.</b><%= question.text %></h3>
+            <span class="time pull-right"><i class="fa fa-clock-o"></i> <%= question.created_at.strftime("%D") %></span>
+          </div>
+          <div class="box-body">
+            <br />
+            <%= form_for(@answer) do |f| %>
+              <%= f.hidden_field :question_id, value: question.id %>
+              <% question.options.each_with_index do |option, i| %>
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <%= f.radio_button :option_id, option.id, checked: (question.user_answered?(current_user.id, option.id)) %>
+                      <%= option.name.capitalize %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+              <hr />
+              <% if !question.answers.exists?(user_id: current_user.id) %>
+                <%= f.submit 'Vote', class: 'btn btn-primary' %>
+              <% else %>
+                <% question.options.each_with_index do |option, i| %>
+                  <%= option(index: i,option: option.name, progress: option.progress, color: color(option.progress)) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="box-footer">
+            <div class="row bottom_mrgn">
+              <%= form_for(@comment, validate: true, remote: true ) do |f| %>
+                <div class="col-md-10">
+                  <%= f.text_field :text, class: 'form-control', placeholder: 'Add a comment' %>
+                </div>
+                <%= f.hidden_field :parent_id %>
+                <%= f.hidden_field :question_id, value: question.id %>
+                <div class="col-md-2">
+                  <%= f.submit 'add comment', class: 'btn btn-success' %>
+                </div>
+              <% end %>
+            </div>
+            <div>
+            <div id="cmnt-<%= question.id %>">
+              
+            </div>
+            </div>
+            <ul class="list-inline">
+              <li class="pull-right">
+                <a href="#comment-<%= question.id %>" class="link-black text-sm " data-toggle="collapse" ><i class="fa fa-comments-o margin-r-5"></i> Comments(<%= comments_count(question) %>)</a>
+              </li>
+            </ul>
+            <div id="comment-<%= question.id %>" class="collapse">
+              <%= nested_comments question.comments.arrange %>
+            </div>
+          </div>
+        </div>
+      <% end %>      
+      <%= paginate @questions %>
+    </section>
+  </div>
+</section>
+

@@ -1,0 +1,6 @@
+<% if @comment.is_reply? %>
+	$("#post_<%= @comment.parent.id%>").append("<%= j render(:partial => 'comment', :locals => {:comment => @comment}) %>");
+	$("#parent_post_<%= @comment.parent.id%>").addClass("nested_comments");
+<% else %>
+	$("#cmnt-<%= @comment.question.id %>").append("<%= j render(:partial => 'comment', :locals => {:comment => @comment}) %>");
+<% end %>

@@ -1,0 +1,47 @@
+<div class="post">
+  <div class="user-block">
+    <%= image_tag('avatar.png') %>
+    <span class="username">
+      <a href="#"><%= comment.user.name %></a>
+    </span>
+    <span class="description">Commented on - <%= time_ago_in_words(comment.created_at)%> ago</span>
+  </div>
+  <p>
+   <%= comment.text %>
+  </p>
+  <ul class="list-inline">
+    <li>
+      <%= link_to comment_vote_path(comment_id: comment.id, action_name: 'upvote'), remote: true, class: 'link-black text-sm' do %>
+        <i class="fa fa-arrow-up margin-r-5"></i> Upvote <span id="upvotes_<%= comment.id%>"><%= upvotes(comment) %></span>
+      <% end %>
+    </li>
+    <li><%= link_to comment_vote_path(comment_id: comment.id, action_name: 'downvote'), remote: true, class: 'link-black text-sm' do %>
+        <i class="fa fa-arrow-down margin-r-5 green"></i> Downvote <span id="downvotes_<%= comment.id %>"><%= downvotes(comment) %></span>
+      <% end %>
+    </li>
+    <% unless comment.is_reply? %>
+      <li><a href="#comment_reply_<%= comment.id %>" class="link-black text-sm" data-toggle="collapse" ><i class="fa fa-reply margin-r-5"></i> Reply</a></li>
+      <% unless reply_count(comment).zero? %>
+        <li class="pull-right">
+          <a href="#reply_<%= comment.id %>" class="link-black text-sm" data-toggle="collapse" ><i class="fa fa-comments-o margin-r-5"></i> replies
+            (<%= reply_count(comment) %>)</a></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="row collapse bottom_mrgn" id="comment_reply_<%= comment.id %>">
+    <%= form_for(Comment.new, remote: true ) do |f| %>
+      <div class="col-md-8">
+        <%= f.text_field :text, class: "form-control comment_text", required: true, placeholder: 'Add a reply...' %>
+      </div>
+      <%= f.hidden_field :parent_id, value: comment.id %>
+      <%= f.hidden_field :question_id, value:comment.question.id %>
+      <div class="col-md-4">
+        <%= f.submit 'add reply', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+  <div id="parent_post_<%= comment.id %>">
+    <div id="post_<%= comment.id %>">
+    </div>
+  </div>
+</div>

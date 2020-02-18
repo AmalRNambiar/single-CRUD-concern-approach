@@ -1,0 +1,13 @@
+<div class="nested-fields">
+	<%= f.label :option %>
+	<div class="input-group margin" style="margin-right: 0px;margin-left: 0px;">
+		<%= f.text_field :name, class: 'form-control new_input', data: {validate: true} %>
+		<span class="input-group-btn">
+			<%= link_to_remove_association "-", f, class: 'btn btn-danger btn-flat' %>
+		</span>
+	</div>
+</div>
+<script type="text/javascript">
+	var new_input = $('.new_input')[$('.new_input').length-1]
+	$(new_input).enableClientSideValidations();
+</script>
