@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 	include CrudConcern
 	before_action :initialize_form, only: [:index]
-	
+
 	def new
 		super
 		2.times { @question.options.build }

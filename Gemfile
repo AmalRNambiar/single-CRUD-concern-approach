@@ -32,6 +32,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry', '~> 0.11.3'
   gem 'pry-byebug', '~> 3.6'
+  gem 'rspec', '~> 3.4'
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -45,13 +47,13 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem 'rspec', '~> 3.4'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'rspec_junit_formatter', '0.4.1'
+  gem 'rails-controller-testing'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
