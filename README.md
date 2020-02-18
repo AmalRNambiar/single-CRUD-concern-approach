@@ -5,20 +5,13 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version : 2.5.0
 
-* System dependencies
+* Database : postgres
 
-* Configuration
+* Database initialization : rake db:setup(set database user name and password in database.yml)
 
-* Database creation
+* How to run the test suite : bundle exec rspec
 
-* Database initialization
+* Deployment instructions: rails s
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

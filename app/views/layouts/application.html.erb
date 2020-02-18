@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <title>SperiPOLL</title>
+    <title>FORUM</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,35 +13,36 @@
   <body class="hold-transition skin-purple-light sidebar-mini">
     <div class="wrapper">
       <% if user_signed_in? %>
-        <header class="main-header">
-          <a href="<%= root_path %>" class="logo">
-            <span class="logo-mini"><b>P</b>OLL</span>
-            <span class="logo-lg"><b>Speri</b>POLL</span>
-          </a>
-          <%= render 'shared/nav_menu' %>
-        </header>
-        <%= render "shared/side_menu" %>
-        <div class="content-wrapper">
-          <% flash.each do |key, value| %>
-            <div class="alert alert-info alert-dismissible">
-              <%= value %> <button type="button" class="close" data-dismiss="alert">&times;</button>
-            </div>
-          <% end %>
-          <%= yield %>
+      <header class="main-header">
+        <a href="<%= root_path %>" class="logo">
+          <span class="logo-mini"><b>F</b>ORUM</span>
+          <span class="logo-lg"><b>F</b>ORUM</span>
+        </a>
+        <%= render 'shared/nav_menu' %>
+      </header>
+      <%= render "shared/side_menu" %>
+      <div class="content-wrapper">
+        <% flash.each do |key, value| %>
+        <div class="alert alert-info alert-dismissible">
+          <%= value %> <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
-        <%= render 'shared/footer' %>
-      <% else %>
+        <% end %>
         <%= yield %>
+      </div>
+      <%= render 'shared/footer' %>
+      <% else %>
+      <%= yield %>
       <% end %>
     </div>
   </body>
+
 </html>
 
 <% cache 'modals' do %>
-  <div class="modal fade" id="new-form">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      </div>
+<div class="modal fade" id="new-form">
+  <div class="modal-dialog">
+    <div class="modal-content">
     </div>
   </div>
+</div>
 <% end %>
