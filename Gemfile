@@ -28,6 +28,7 @@ gem 'client_side_validations'
 gem 'ancestry'
 gem 'acts_as_votable', '~> 0.12.0'
 gem 'jquery-ui-rails'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -51,7 +52,6 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'shoulda-matchers'
   gem 'rspec_junit_formatter', '0.4.1'
   gem 'rails-controller-testing'
