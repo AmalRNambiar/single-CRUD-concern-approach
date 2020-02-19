@@ -17,7 +17,7 @@ gem 'devise', '~> 4.4', '>= 4.4.3'
 gem "pundit"
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'bootstrap-sass', '~> 3.4'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 gem 'kaminari'
